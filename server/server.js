@@ -5,7 +5,7 @@ import connectDB from './config/db.js'
 import './config/instrument.js'
 import * as Sentry from "@sentry/node";
 import { clerkWebhooks } from './controller/webhooks.js'
-import companyRoutes from './routes/companyRoutes.js'
+// import companyRoutes from './routes/companyRoutes.js'
 const app=express()
 await connectDB()
 
@@ -20,9 +20,12 @@ app.get("/debug-sentry", function mainHandler(req, res) {
   });
   
 
-app.post('/webhooks',clerkWebhooks)
+  app.post('/webhooks', (req, res) => {
+    console.log("Received webhook:", req.body);
+    res.status(200).send("Webhook received");
+});
 
-app.use('/api/company',companyRoutes)
+// app.use('/api/company',companyRoutes)
 
 
 const PORT=process.env.PORT || 5000
