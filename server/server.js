@@ -5,11 +5,17 @@ import connectDB from './config/db.js'
 import './config/instrument.js'
 import * as Sentry from "@sentry/node";
 import { clerkWebhooks } from './controller/webhooks.js'
-// import companyRoutes from './routes/companyRoutes.js'
-const app=express()
-await connectDB()
+import companyRoutes from './routes/companyRoutes.js'
+import connectCloudinary from './config/cloudinary.js'
 
-app.use(cors())
+
+const app=express()
+
+
+await connectDB()
+await connectCloudinary()
+
+app.use(cors());
 
 //whenever we get the response then the response will be passed using json method
 app.use(express.json())
@@ -25,7 +31,7 @@ app.get("/debug-sentry", function mainHandler(req, res) {
     res.status(200).send("Webhook received");
 });
 
-// app.use('/api/company',companyRoutes)
+app.use('/api/company',companyRoutes)
 
 
 const PORT=process.env.PORT || 5000

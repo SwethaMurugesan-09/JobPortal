@@ -8,5 +8,5 @@ const companySchema=new mongoose.Schema({
 
 })
 
-const company=mongoose.model('Company',companySchema)
+const Company=mongoose.model('Company',companySchema)
 export default Company
