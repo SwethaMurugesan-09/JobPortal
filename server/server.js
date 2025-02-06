@@ -28,10 +28,10 @@ app.get("/debug-sentry", function mainHandler(req, res) {
   });
   
 
-//   app.post('/webhooks', (req, res) => {
-//     console.log("Received webhook:", req.body);
-//     res.status(200).send("Webhook received");
-// });
+app.post('/webhooks', (req, res) => {
+    console.log("Received webhook:", req.body);
+     res.status(200).send("Webhook received");
+});
 
 // app.use('/api/company',companyRoutes)
 // app.use('/api/jobs',jobRoutes)
