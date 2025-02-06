@@ -2,20 +2,20 @@ import express from 'express'
 import cors from 'cors'
 import 'dotenv/config'
 import connectDB from './config/db.js'
-import './config/instrument.js'
+// import './config/instrument.js'
 import * as Sentry from "@sentry/node";
-import { clerkWebhooks } from './controller/webhooks.js'
-import companyRoutes from './routes/companyRoutes.js'
-import connectCloudinary from './config/cloudinary.js'
-import jobRoutes from './routes/JobRoutes.js'
-import userRoutes from './routes/UserRoutes.js'
+// import { clerkWebhooks } from './controller/webhooks.js'
+// import companyRoutes from './routes/companyRoutes.js'
+// import connectCloudinary from './config/cloudinary.js'
+// import jobRoutes from './routes/JobRoutes.js'
+// import userRoutes from './routes/UserRoutes.js'
 
 
 const app=express()
 
 
 await connectDB()
-await connectCloudinary()
+// await connectCloudinary()
 
 app.use(cors());
 
@@ -28,14 +28,14 @@ app.get("/debug-sentry", function mainHandler(req, res) {
   });
   
 
-  app.post('/webhooks', (req, res) => {
-    console.log("Received webhook:", req.body);
-    res.status(200).send("Webhook received");
-});
+//   app.post('/webhooks', (req, res) => {
+//     console.log("Received webhook:", req.body);
+//     res.status(200).send("Webhook received");
+// });
 
-app.use('/api/company',companyRoutes)
-app.use('/api/jobs',jobRoutes)
-app.use('/api/users',userRoutes)
+// app.use('/api/company',companyRoutes)
+// app.use('/api/jobs',jobRoutes)
+// app.use('/api/users',userRoutes)
 
 const PORT=process.env.PORT || 5000
 Sentry.setupExpressErrorHandler(app);

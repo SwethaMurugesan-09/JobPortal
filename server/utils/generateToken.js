@@ -1,11 +1,11 @@
-import jwt from 'jsonwebtoken'
+// import jwt from 'jsonwebtoken'
 
-const generateToken = (id)=>{
+// const generateToken = (id)=>{
 
-    //we have the company id in the form of payload data
-    return jwt.sign({id},process.env.JWT_SECRET,{
-        expiresIn:'360d'
-    })
-}
+//     //we have the company id in the form of payload data
+//     return jwt.sign({id},process.env.JWT_SECRET,{
+//         expiresIn:'360d'
+//     })
+// }
 
-export default generateToken
+// export default generateToken
