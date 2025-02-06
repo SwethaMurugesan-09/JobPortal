@@ -7,6 +7,7 @@ import * as Sentry from "@sentry/node";
 import { clerkWebhooks } from './controller/webhooks.js'
 import companyRoutes from './routes/companyRoutes.js'
 import connectCloudinary from './config/cloudinary.js'
+import jobRoutes from './routes/JobRoutes.js'
 
 
 const app=express()
@@ -32,7 +33,7 @@ app.get("/debug-sentry", function mainHandler(req, res) {
 });
 
 app.use('/api/company',companyRoutes)
-
+app.use('/api/jobs',jobRoutes)
 
 const PORT=process.env.PORT || 5000
 Sentry.setupExpressErrorHandler(app);
