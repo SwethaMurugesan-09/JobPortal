@@ -1,20 +1,20 @@
 
-// //get user data
-// export const getUserData=async(req,res)=>{
+//get user data
+export const getUserData=async(req,res)=>{
 
-// }
+}
 
-// //apply for a job
-// export const applyForJob=async(req,res)=>{
+//apply for a job
+export const applyForJob=async(req,res)=>{
 
-// }
+}
 
-// //get user applied applications
-// export const getUserJobApplications = async(req,res)=>{
+//get user applied applications
+export const getUserJobApplications = async(req,res)=>{
 
-// }
+}
 
-// //updated user profile (resume)
-// export const updateUserResume = async(req,res)=>{
+//updated user profile (resume)
+export const updateUserResume = async(req,res)=>{
     
-// }
+}

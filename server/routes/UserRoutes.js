@@ -1,19 +1,19 @@
-// import express from 'express'
-// import { applyForJob, getUserData, getUserJobApplications, updateUserResume } from '../controller/userController.js'
-// import upload from '../config/multer.js'
+import express from 'express'
+import { applyForJob, getUserData, getUserJobApplications, updateUserResume } from '../controller/userController.js'
+import upload from '../config/multer.js'
 
-// const router=express.Router()
+const router=express.Router()
 
-// //get user data
-// router.get('/user',getUserData)
+//get user data
+router.get('/user',getUserData)
 
-// //apply for a job
-// router.post('/apply',applyForJob)
+//apply for a job
+router.post('/apply',applyForJob)
 
-// //get applied job data
-// router.get('/applications',getUserJobApplications)
+//get applied job data
+router.get('/applications',getUserJobApplications)
 
-// //update user profile(resume)
-// router.post('/update-resume',upload.single('resume'),updateUserResume)
+//update user profile(resume)
+router.post('/update-resume',upload.single('resume'),updateUserResume)
 
-// export default router;
+export default router;
