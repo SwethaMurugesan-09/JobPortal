@@ -1,5 +1,5 @@
 //In this middleware it decode the token generated used during  registerCompnay  and help to fetch the company id
-import Company from '../models/company.js';
+import Company from '../models/Company.js'
 import jwt from 'jsonwebtoken'
 
 //next is used to call the function
