@@ -1,6 +1,6 @@
 //In this middleware it decode the token generated used during  registerCompnay  and help to fetch the company id
-import Company from '../models/Company.js'
 import jwt from 'jsonwebtoken'
+import Company from '../models/Company.js'
 
 //next is used to call the function
 export const protectCompany=async(req,res,next)=>{
