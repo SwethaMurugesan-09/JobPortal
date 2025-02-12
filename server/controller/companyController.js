@@ -1,5 +1,6 @@
 
-import bcrypt, { compare } from 'bcrypt'
+import bcrypt from 'bcryptjs';
+const { compare } = bcrypt;
 import {v2 as cloudinary} from 'cloudinary'
 import generateToken from "../utils/generateToken.js";
 import Job from "../models/Job.js"; 
