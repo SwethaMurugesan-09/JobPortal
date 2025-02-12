@@ -122,7 +122,21 @@ export const postJob=async(req,res)=>{
 
 //get company job applications
 export const getCompanyJobApplicants = async(req,res)=>{
+    try{
+        const companyId=req.company._id
+        // find job applications for the user and populate related dara
 
+        const applications = await JobApplication.find({companyId})
+        .populate('userId','name image resume')
+        .populate('jobId','title location category salary')
+        .exec()
+
+        return res.json({success:true,applications})
+    }
+    catch(error)
+    {
+        res.json({success:false,message:error.message})
+    }
 }
 
 //get company posted jobs
@@ -153,6 +167,16 @@ export const getCompanyPostedJobs =async(req,res)=>{
 //change job application status
 export const changeJobApllicationsStatus = async(req,res)=>{
 
+    try{
+    const{id,status} =req.body
+
+    await JobApplication.findOneAndUpdate({_id:id},{status})
+
+    res.json({success:true,message:'Status Changed'})
+    }catch(error)
+    {
+        res.json({success:false,message:error.message})
+    }
 }
 
 //change job visibility
