@@ -1,4 +1,4 @@
-import Company from "../models/Company.js";
+import Company from "../models/company.js";
 import bcrypt, { compare } from 'bcrypt'
 import {v2 as cloudinary} from 'cloudinary'
 import generateToken from "../utils/generateToken.js";
