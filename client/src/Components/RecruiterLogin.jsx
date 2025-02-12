@@ -27,11 +27,12 @@ const RecruiterLogin = () => {
          try{
           if(state==="Login"){
             const {data} = await axios.post(backendUrl + '/api/company/login',{email,password})
+            console.log("Login Response:", data);
             if(data.success)
             {
               setCompanyData(data.company)
               setCompanyToken(data.token)
-              localStorage.setItem('company Token',data.token)
+              localStorage.setItem('companyToken',data.token)
               setShowRecruiterLogin(false)
               navigate('/dashboard')
             }
@@ -52,7 +53,7 @@ const RecruiterLogin = () => {
               {
                 setCompanyData(data.company)
                 setCompanyToken(data.token)
-                localStorage.setItem('company Token',data.token)
+                localStorage.setItem('companyToken', data.token); // ✅ Fix key name
                 setShowRecruiterLogin(false)
                 navigate('/dashboard')
               }

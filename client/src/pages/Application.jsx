@@ -3,10 +3,48 @@ import Navbar from '../Components/Navbar'
 import { assets, jobsApplied } from '../assets/assets'
 import moment from 'moment'
 import Footer from '../Components/Footer'
+import { AppContext } from '../context/AppContext'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { useUser, useAuth } from "@clerk/clerk-react";
+import { useContext } from "react";
+
 
 const Application = () => {
+
+  const {user}=useUser()
+  const {getToken}=useAuth()
+   
   const [isEdit,setIsEdit]=useState(false)
   const [resume,setResume]=useState(null)
+
+  const {backendUrl,userData,userApplications,fetchUserData}=useContext(AppContext)
+  
+  const updateResume = async()=>{
+      try{
+          const formData=new FormData()
+          formData.append('resume',resume)
+          const token = await getToken()
+          const {data}=await axios.post(backendUrl+'/api/users/update-resume',
+            formData,
+            {headers:{Authorization:`Bearer ${token}`}}
+          )
+          if(data.success){
+            toast.success(data.message)
+            await fetchUserData()
+          }else{
+            toast.error(data.message)
+          }
+      }
+      catch(error)
+      {
+          toast.error(error.message)
+      }
+      setIsEdit(false)
+      setResume(null)
+  }
+
+  
   return (
     <>
       <Navbar/>
@@ -14,13 +52,13 @@ const Application = () => {
         <h2 className='text-xl font-semibold'>Your Resume</h2>
         <div className='flex gap-2 mb-6 mt-3'>
           {
-            isEdit
+            isEdit || userData && userData.resume===""
             ?<>
             <label className='flex items-center gap-2' htmlFor="resumeUpload">
-              <p className='bg-blue-100 text-blue-600 px-4 py-2 rounded-lg mr-2'>Select Resume</p>
+              <p className='bg-blue-100 text-blue-600 px-4 py-2 rounded-lg mr-2'>{resume?resume.name:"select resume"}</p>
               <input id='resumeUpload' onChange={e=>setResume(e.target.files[0])} accept='application/pdf' type='file' hidden></input>
               <img src={assets.profile_upload_icon} />
-              <button onClick={e=>setIsEdit(false)} className='bg-green-100 border border-green-400 rounded-lg px-4 py-2'>Save</button>
+              <button onClick={updateResume} className='bg-green-100 border border-green-400 rounded-lg px-4 py-2'>Save</button>
             </label>
             </>:
             <div className='flex gap-2'>
