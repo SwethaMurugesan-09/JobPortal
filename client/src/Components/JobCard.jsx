@@ -1,13 +1,13 @@
 import React from 'react'
-import { assets } from '../assets/assets'
 import {useNavigate} from 'react-router-dom'
 const JobCard = ({job}) => {
   const navigate =useNavigate()
   return (
     <div className=' border p-6 shadow rounded'>
-        <div className='flex justify-between items-center'>
-            <img className='h-8' src={job.companyId.image}/>
-        </div>
+        <div className='flex items-center gap-3'>
+    <img className='h-6' src={job.companyId.image} alt={job.companyId.name} />
+    <h1 className='text-gray-500 font-medium text-lg'>{job.companyId.name}</h1>
+</div>
         <h4 className='font-medium text-xl mt-2'>{job.title}</h4>
         <div className='flex items-center gap-3 mt-2 text-xs'>
             <span className='bg-blue-50 border border-blue-200 px-4 py-1.5 rounded'>{job.location}</span>

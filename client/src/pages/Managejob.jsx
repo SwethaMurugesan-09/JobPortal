@@ -58,14 +58,15 @@ const Managejob = () => {
 
   useEffect(()=>{
     if(companyToken){
-        fetchCompanyJobs()
+        fetchCompanyJobs(false)
     }
   },[companyToken])
 
 
-  return jobs? jobs.length !== 0? ( <div className="flex items-center justify-center h-[70vh] w-[180vh]">
+  return jobs? jobs.length === 0? ( <div className="flex items-center justify-center h-[70vh] w-[180vh]">
     <p className="text-xl sm:text-2xl">No jobs available or posted</p>
   </div>):(
+
     <div className='container p-4 max-w-5xl'> 
       <div className='overflow-x-auto'>
         <table className='min-w-full bg-white border border-gray-200 max-sm:text-sm'>
@@ -84,7 +85,7 @@ const Managejob = () => {
               <tr key={index} className='text-gray-700'>
                 <td className='py-2 px-4 border-b max-sm:hidden'>{index+1}</td>
                 <td className='py-2 px-4 border-b' >{job.title}</td>
-                <td className='py-2 px-4 border-b'>{moment(job.date).format('l1')}</td>
+                <td className='py-2 px-4 border-b'>{moment(job.date).format('LL')}</td>
                 <td className='py-2 px-4 border-b'>{job.location}</td>
                 <td className='py-2 px-4 border-b text-center'>{job.applicants}</td>
                 <td className='py-2 px-4 border-b'>

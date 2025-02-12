@@ -53,7 +53,7 @@ const RecruiterLogin = () => {
               {
                 setCompanyData(data.company)
                 setCompanyToken(data.token)
-                localStorage.setItem('companyToken', data.token); // ✅ Fix key name
+                localStorage.setItem('companyToken', data.token); 
                 setShowRecruiterLogin(false)
                 navigate('/dashboard')
               }
@@ -114,7 +114,7 @@ const RecruiterLogin = () => {
         </>
         }
 
-      {state==="Login" && <p className='text-sm text-blue-600 mt-4 cursor-pointer'>Forgot Password</p>}
+      {state==="Login" && <p className='text-sm text-blue-600 mt-4 cursor-pointer'></p>}
         <button type="submit" className='bg-blue-600 w-full text-white py-2 rounded-full'>
             {state === 'Login' ? 'login' :isTextDataSubmited? 'create account':'next'}
         </button>
